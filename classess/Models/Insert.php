@@ -9,10 +9,6 @@ class Insert
             echo $mysqli->connect_error;
             exit();
         }
-        //var_dump($array1);
-        //var_dump($string2);
-        //var_dump($string1);
-        //var_dump($tablename);
         $type = str_repeat("s", count(array_values($array1)));
         $params = array_merge([$type], $array1);
         $stmt = $mysqli->prepare("INSERT INTO `$tablename` ($string1) VALUES ($string2)");
@@ -21,7 +17,6 @@ class Insert
             $newvalues[] = &$value;
         }
         call_user_func_array([$stmt, 'bind_param'], $newvalues);
-        //$stmt->bind_param($bindprams,extract($recordvalues));
 ?>
         <script>
             confirm("ادامه می‌دهید؟")
@@ -32,11 +27,6 @@ class Insert
             }
         </script>
 <?php
-
-        //mysqli_query($con, $sql_insert);
         $stmt->execute();
-
-        //return $sql_insert; // comments are for knowing the debuggers and the workflow
-        //echo "done";
     }
 }
